@@ -22,7 +22,7 @@ More concretely, the toolkit should:
 
 * ⚡ **Speed up charter creation** by letting an LLM list plausible risks the moment a page is loaded.
 * 🧭 **Navigate test sessions** with self-adjusting goals, allowing the AI to dig deeper where risk appears highest.
-* 📝 **Produce an auditable log** of every action, assertion, and observation, making the exploratory work repeatable and reviewable.
+* 📝 **Produce a log** of every action, assertion, and observation, making the exploratory work repeatable and reviewable.
 * 🐞 **File actionable defect reports** (steps to reproduce, screenshots, console/network traces) whenever the AI encounters an anomaly.
 
 ---

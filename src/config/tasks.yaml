@@ -1,0 +1,7 @@
+testing_task:
+  description: >
+    Conduct a thorough test of the {url} system.
+    
+  expected_output: >
+    A report with tests, results and your evaluation of the system.
+  agent: tester
