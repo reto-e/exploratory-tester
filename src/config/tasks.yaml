@@ -1,7 +1,6 @@
 testing_task:
   description: >
-    Conduct a thorough test of the {url} system.
-    
+    Conduct a thorough test of the {url} system. Use the Exploratory Browser Testing Tool to accomplish this.
   expected_output: >
     A report with tests, results and your evaluation of the system.
   agent: tester

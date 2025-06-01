@@ -1,19 +1,37 @@
 from crewai.tools import BaseTool
-from typing import Type
-from pydantic import BaseModel, Field
-
-
-class MyCustomToolInput(BaseModel):
-    """Input schema for MyCustomTool."""
-    argument: str = Field(..., description="Description of the argument.")
+from browser_use import Agent
+from langchain_openai import ChatOpenAI
+import os
 
 class MyCustomTool(BaseTool):
-    name: str = "Name of my tool"
+    name: str = "Exploratory Browser Testing Tool"
     description: str = (
-        "Clear description for what this tool is useful for, your agent will need this information to use it."
+        "This tool uses the browser-use framework to perform exploratory testing on a given webpage. "
+        "Provide the URL of the page you want to test as the argument."
     )
-    args_schema: Type[BaseModel] = MyCustomToolInput
 
-    def _run(self, argument: str) -> str:
-        # Implementation goes here
-        return "this is an example of a tool output, ignore it and move along."
+    def _run(self, url: str) -> str:
+        """
+        Performs exploratory testing on the given URL using the browser-use framework.
+
+        Args:
+            url: The URL of the webpage to test.
+
+        Returns:
+            A string containing the results of the exploratory testing.
+        """
+        # Define the exploratory testing task
+        task = f"Perform exploratory testing on the page at {url}.  " \
+               f"Identify potential issues, gather information about the page's functionality and content, " \
+               f"and report your findings. Be creative and thorough."
+
+        # Initialize the browser-use agent
+        agent = Agent(
+            task=task,
+            llm=ChatOpenAI(model="gpt-4o", openai_api_key=os.environ.get("OPENAI_API_KEY")), # Ensure API key is set
+        )
+
+        # Run the browser-use agent
+        result = agent.run()
+
+        return result
