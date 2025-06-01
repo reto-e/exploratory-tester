@@ -28,10 +28,14 @@ def run(url_param: str = "https://automationintesting.online/"):
     agent = Agent(
         task=task,
         llm=llm,
-        save_conversation_path="output/04_detailed_testrun.md",
+        save_conversation_path="output/detailed_logs/",
     )
+
+
     async def run_agent():
         return await agent.run(max_steps=20)
+
+    findings = asyncio.run(run_agent())
 
     # compile a report of findings and save it to output/03_test_session_report.md
     os.makedirs("output", exist_ok=True)
